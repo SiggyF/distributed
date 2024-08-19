@@ -167,7 +167,7 @@ class DiskShardsBuffer(ShardsBuffer):
             serialize_meter_ctx = context_meter.meter("serialize", func=thread_time)
 
         with (
-            self._directory_lock.read(),
+            self._directory_lock.write(),
             context_meter.meter("disk-write"),
             serialize_meter_ctx,
         ):
